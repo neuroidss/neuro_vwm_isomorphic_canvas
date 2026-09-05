@@ -153,7 +153,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 #### [F3] Translation: Spatial Phase Drift & Microsaccadic Compensation ($\Delta x, \Delta y, \phi$)
 * **Biological Origin:** Simple cells in $V_1$ encode local spatial phase $\phi \in [0, 2\pi)$ to compensate for fixational eye drift and microsaccades ($10\text{--}30\text{ Hz}$) [14, 15].
 * **Decoding Formulation:**
-  $$\Delta x(k) = \operatorname{clamp}\left(V_x(k) \cdot 8 \times 10^{-4}, \; -0.03, \; +0.03\right) \cdot \text{Aspect}, \quad \Delta y(k) = \operatorname{clamp}\left(V_y(k) \cdot 8 \times 10^{-4}, \; -0.03, \; +0.03\right)$$
+  $$\Delta x(k) = \text{clamp}\left(V_x(k) \cdot 8 \times 10^{-4}, -0.03, +0.03\right) \cdot \text{Aspect}, \quad \Delta y(k) = \text{clamp}\left(V_y(k) \cdot 8 \times 10^{-4}, -0.03, +0.03\right)$$
 * **Visual Synthesis:** Smooth, sub-centimeter lateral and vertical drifting of stripes.
 
 #### [F4] Zoom: Spatial Frequency & Looming Divergence ($f \in [3.5, 9.0]\text{ cpd}$)
