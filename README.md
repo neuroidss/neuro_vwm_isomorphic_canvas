@@ -148,7 +148,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 * **Biological Origin:** Primary visual cortex $V_1$ is organized into orientation pinwheels [12, 16].
 * **Decoding Formulation:** Extracted from the spatial curl and tangential phase gradient across the 66 ring links:
 
-  $$\vec{V}_{\text{flow}}(k) = \sum_{p=1}^{120} \mathbf{W}_{k,p} \cdot \begin{bmatrix} \Delta X_p \\ \Delta Y_p \end{bmatrix}, \quad \theta(k) = \frac{1}{2}\operatorname{atan2}(V_y(k), V_x(k))$$
+$$\vec{V}_{\text{flow}}(k) = \sum_{p=1}^{120} \mathbf{W}_{k,p} \cdot \begin{bmatrix} \Delta X_p \\\\ \Delta Y_p \end{bmatrix}, \quad \theta(k) = \frac{1}{2}\text{atan2}(V_y(k), V_x(k))$$
   
 * **Visual Synthesis:** Continuous rotation of the Gabor grating within the foveal aperture.
 
@@ -164,7 +164,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 * **Biological Origin:** $V_1$ columns display orthogonal spatial frequency organization [12]. Radial divergence from the central core to outer electrodes reflects visual expansion (looming) [26].
 * **Decoding Formulation:**
 
-  $$\text{Div}(k) = \sum_{p \in \text{Cross}} \mathbf{W}_{k,p} \cdot \left( X_{I_p} \Delta X_p + Y_{I_p} \Delta Y_p \right) \cdot 10^{-2}, \quad f(k) = 6.5 \cdot \left(1.0 + 0.4 \cdot \tanh(\text{Div}(k))\right)$$
+$$\text{Div}(k) = \sum_{p \in \text{Cross}} \mathbf{W}_{k,p} \cdot \left( X_{I_p} \Delta X_p + Y_{I_p} \Delta Y_p \right) \cdot 10^{-2}, \quad f(k) = 6.5 \cdot \left(1.0 + 0.4 \cdot \tanh(\text{Div}(k))\right)$$
   
 * **Visual Synthesis:** Dynamic expansion (thicker stripes, lower frequency) or contraction (thinner stripes, higher frequency).
 
@@ -189,7 +189,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 * **Biological Origin:** When holding multiple items simultaneously, $V_1\text{--}V_4$ networks multiplex representations across distinct phase quadrants of the Theta cycle [22, 28].
 * **Decoding Formulation:**
 
-  $$\text{Item}_A = \frac{1}{16}\sum_{k=0}^{15} \theta(k), \quad \text{Item}_B = \frac{1}{16}\sum_{k=16}^{31} \theta(k)$$
+$$\text{ItemA} = \frac{1}{16}\sum_{k=0}^{15} \theta(k), \quad \text{ItemB} = \frac{1}{16}\sum_{k=16}^{31} \theta(k)$$
   
 * **Visual Synthesis:** Two distinct orientations alternate in visual dominance at the biological Theta tempo ($5\text{--}8\text{ Hz}$).
 
@@ -197,7 +197,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 * **Biological Origin:** Neural populations rotate memory representations into orthogonal null-spaces to prevent interference from incoming sensory inputs [23].
 * **Decoding Formulation:** Evaluates the energy projected into the orthogonal complement of the principal gradient:
 
-  $$\mathbf{P}_{\text{null}} = \frac{1}{32}\sum_{k=0}^{31} |\sin(2\theta(k))|$$
+$$\mathbf{P}_{\text{null}} = \frac{1}{32}\sum_{k=0}^{31} |\sin(2\theta(k))|$$
   
 * **Visual Synthesis:** Renders a protective phase-polarization sheath over the Gabor envelope.
 
@@ -205,7 +205,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 * **Biological Origin:** Memories are maintained in activity-silent short-term synaptic plasticity (STSP) states. Gamma burst pings briefly reactivate the silent synaptic footprint [24, 25].
 * **Decoding Formulation:** Leaky accumulation of the synaptic conductivity matrix on GPU:
 
-  $$\mathbf{M}_{\text{stsp}}(t) = 0.92 \cdot \mathbf{M}_{\text{stsp}}(t-1) + 0.08 \cdot \text{Contrast}_{\text{now}}(t)$$
+$$\mathbf{M}_{\text{stsp}}(t) = 0.92 \cdot \mathbf{M}_{\text{stsp}}(t-1) + 0.08 \cdot \text{Contrast}_{\text{now}}(t)$$
   
 * **Visual Synthesis:** A latent violet ghost Gabor pattern briefly flashes when a Gamma pulse pings the inactive state.
 
