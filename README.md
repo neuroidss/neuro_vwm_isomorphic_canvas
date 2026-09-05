@@ -234,7 +234,7 @@ $$\mathbf{M}_{\text{stsp}}(t) = 0.92 \cdot \mathbf{M}_{\text{stsp}}(t-1) + 0.08 
 The system supports up to 4 concurrent FreeEEG16-alpha2 arrays over BLE5 / LabStreamingLayer (LSL).
 * When multiple devices are placed on the **same cortical region** (e.g., Device 0 and Device 1 both assigned to `Oz` over bilateral visual cortex), their 120-edge tensors are pooled via **ensemble averaging on CUDA**:
 
-  $$\mathbf{W}_{\text{pooled}}(R) = \frac{1}{|D_R|}\sum_{d \in D_R} \mathbf{W}_d, \quad \text{where } D_R = \{d \mid \text{Routing}(d) = R\}$$
+$$\mathbf{W}_{\text{pooled}}(R) = \frac{1}{|D_R|}\sum_{d \in D_R} \mathbf{W}_d, \quad \text{where } D_R = \left\lbrace d \mid \text{Routing}(d) = R \right\rbrace$$
   
 * This suppresses uncorrelated sensor noise and sharpens the population phase estimate.
 
