@@ -131,7 +131,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 | Key | Mode Name | Anatomical Substrate | Modulated Mathematical Parameter |
 | :--- | :--- | :--- | :--- |
 | **`F1`** | **Laboratory Diagnostic HUD** | Whole Stack / Telemetry | Toggles live overlay (Radars, Oscilloscope, PAC spectrum) [1, 19]. |
-| **`F2`** | **Rotation (Orientation)** | $V_1$ Pinwheels ($Oz$) | Contour angle $\theta(k) = \frac{1}{2}\operatorname{atan2}(V_y, V_x) \in [0, \pi)$ [12, 16]. |
+| **`F2`** | **Rotation (Orientation)** | $V_1$ Pinwheels ($Oz$) | Contour angle $\theta(k) = \frac{1}{2}\text{atan2}(V_y, V_x) \in [0, \pi)$ [12, 16]. |
 | **`F3`** | **Translation (Spatial Drift)** | $V_1$ Simple Cells ($Oz$) | Carrier phase $\phi(k)$ & micro-shift $(\Delta x, \Delta y) \le \pm 4.5\text{ mm}$ [14, 15]. |
 | **`F4`** | **Zoom (Spatial Frequency)** | $V_1/V_4$ Radial Cross ($Oz$) | Grating frequency $f(k) = f_0 (1 + 0.4\tanh(\text{Div})) \in [3.6, 8.4]\text{ cpd}$ [12]. |
 | **`F5`** | **Curvature (Banana Gabor)** | $V_2 / V_4$ End-Stopping ($PO7$) | Parabolic arc curvature $\kappa(k) = 1.5 \cdot \text{Curl}(k) \in [-0.8, +0.8]$ [9]. |
