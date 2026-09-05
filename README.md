@@ -136,7 +136,7 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 | **`F4`** | **Zoom (Spatial Frequency)** | $V_1/V_4$ Radial Cross ($Oz$) | Grating frequency $f(k) = f_0 (1 + 0.4\tanh(\text{Div})) \in [3.6, 8.4]\text{ cpd}$ [12]. |
 | **`F5`** | **Curvature (Banana Gabor)** | $V_2 / V_4$ End-Stopping ($PO7$) | Parabolic arc curvature $\kappa(k) = 1.5 \cdot \text{Curl}(k) \in [-0.8, +0.8]$ [9]. |
 | **`F6`** | **Plaid (Cross-Orientation)** | $V_1 / MT$ Complex Cells ($P7$) | Bipartite orthogonal wave modulation $I_{\text{plaid}}(x,y)$ [21]. |
-| **`F7`** | **Dual-Item PAC Multiplex** | $V_1\text{--}V_4$ Multi-Memory | Theta phase split: Item A ($\Phi_\theta \in [0, \pi)$) vs Item B ($\Phi_\theta \in [\pi, 2\pi)$) [22]. |
+| **`F7`** | **Dual-Item PAC Multiplex** | $V_1\text{–}V_4$ Multi-Memory | Theta phase split: Item A ($`\Phi_\theta \in [0, \pi)`$) vs Item B ($`\Phi_\theta \in [\pi, 2\pi)`$) [22]. |
 | **`F8`** | **Null-Space Attractor Shield** | Prefrontal-Visual Subspace | Projection into memory-protection null-space $\mathbf{P}_{\text{null}}$ [23]. |
 | **`F9`** | **Activity-Silent STSP Ping** | Synaptic Plasticity (STSP) | Ghost Gabor reactivation from latent synaptic matrix $\mathbf{M}_{\text{stsp}}$ [24, 25]. |
 
@@ -147,50 +147,66 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 #### [F2] Rotation: Orientation Column Dynamics ($\theta \in [0, \pi)$)
 * **Biological Origin:** Primary visual cortex $V_1$ is organized into orientation pinwheels [12, 16].
 * **Decoding Formulation:** Extracted from the spatial curl and tangential phase gradient across the 66 ring links:
+
   $$\vec{V}_{\text{flow}}(k) = \sum_{p=1}^{120} \mathbf{W}_{k,p} \cdot \begin{bmatrix} \Delta X_p \\ \Delta Y_p \end{bmatrix}, \quad \theta(k) = \frac{1}{2}\operatorname{atan2}(V_y(k), V_x(k))$$
+  
 * **Visual Synthesis:** Continuous rotation of the Gabor grating within the foveal aperture.
 
 #### [F3] Translation: Spatial Phase Drift & Microsaccadic Compensation ($\Delta x, \Delta y, \phi$)
 * **Biological Origin:** Simple cells in $V_1$ encode local spatial phase $\phi \in [0, 2\pi)$ to compensate for fixational eye drift and microsaccades ($10\text{--}30\text{ Hz}$) [14, 15].
 * **Decoding Formulation:**
+
   $$\Delta x(k) = \text{clamp}\left(V_x(k) \cdot 8 \times 10^{-4}, -0.03, +0.03\right) \cdot \text{Aspect}, \quad \Delta y(k) = \text{clamp}\left(V_y(k) \cdot 8 \times 10^{-4}, -0.03, +0.03\right)$$
+  
 * **Visual Synthesis:** Smooth, sub-centimeter lateral and vertical drifting of stripes.
 
 #### [F4] Zoom: Spatial Frequency & Looming Divergence ($f \in [3.5, 9.0]\text{ cpd}$)
 * **Biological Origin:** $V_1$ columns display orthogonal spatial frequency organization [12]. Radial divergence from the central core to outer electrodes reflects visual expansion (looming) [26].
 * **Decoding Formulation:**
+
   $$\text{Div}(k) = \sum_{p \in \text{Cross}} \mathbf{W}_{k,p} \cdot \left( X_{I_p} \Delta X_p + Y_{I_p} \Delta Y_p \right) \cdot 10^{-2}, \quad f(k) = 6.5 \cdot \left(1.0 + 0.4 \cdot \tanh(\text{Div}(k))\right)$$
+  
 * **Visual Synthesis:** Dynamic expansion (thicker stripes, lower frequency) or contraction (thinner stripes, higher frequency).
 
 #### [F5] Curvature: Pasupathy-Connor Banana Gabor ($\kappa \in [-0.8, +0.8]$)
 * **Biological Origin:** Intermediate visual areas ($V_2 / V_4$) contain end-stopped neurons tuned to curved boundary contours and angular corners [9, 27].
 * **Decoding Formulation:** Extracted from the sagitta curvature $rx$ of the 120-edge graph:
+
   $$\kappa(k) = \text{clamp}\left(1.5 \cdot \sum_{p=1}^{120} \mathbf{W}_{k,p} \cdot \text{CURL}_p, -0.8, +0.8\right)$$
+  
 * **Visual Synthesis:** Nonlinear parabolic coordinate bending in GLSL:
   $$y' = y + \kappa(k) \cdot x^2 \cdot 3.0$$
 
 #### [F6] Plaid: Bipartite Cross-Orientation Activation ($V_1 / MT$)
 * **Biological Origin:** Complex cells in $V_1$ and area $MT$ integrate cross-oriented inputs into a unified 2D plaid texture [21].
 * **Decoding Formulation:** Spectral standard deviation across the 120-edge matrix gates orthogonal grating power:
+
   $$\text{Plaid}(k) = \text{clamp}\left(1.2 \cdot \sigma_p(\mathbf{W}_{k,:}), 0.0, 1.0\right)$$
+  
 * **Visual Synthesis:** Bipartite superposition of orthogonal gratings forming a 2D checkerboard mesh.
 
 #### [F7] Dual-Item Theta Multiplexing (Phase-Partitioned Dual Memory)
 * **Biological Origin:** When holding multiple items simultaneously, $V_1\text{--}V_4$ networks multiplex representations across distinct phase quadrants of the Theta cycle [22, 28].
 * **Decoding Formulation:**
+
   $$\text{Item}_A = \frac{1}{16}\sum_{k=0}^{15} \theta(k), \quad \text{Item}_B = \frac{1}{16}\sum_{k=16}^{31} \theta(k)$$
+  
 * **Visual Synthesis:** Two distinct orientations alternate in visual dominance at the biological Theta tempo ($5\text{--}8\text{ Hz}$).
 
 #### [F8] Orthogonal Subspace Protection (Null-Space Attractor Shielding)
 * **Biological Origin:** Neural populations rotate memory representations into orthogonal null-spaces to prevent interference from incoming sensory inputs [23].
 * **Decoding Formulation:** Evaluates the energy projected into the orthogonal complement of the principal gradient:
+
   $$\mathbf{P}_{\text{null}} = \frac{1}{32}\sum_{k=0}^{31} |\sin(2\theta(k))|$$
+  
 * **Visual Synthesis:** Renders a protective phase-polarization sheath over the Gabor envelope.
 
 #### [F9] Synaptic Ping: Activity-Silent STSP Latent Trace Reactivation
 * **Biological Origin:** Memories are maintained in activity-silent short-term synaptic plasticity (STSP) states. Gamma burst pings briefly reactivate the silent synaptic footprint [24, 25].
 * **Decoding Formulation:** Leaky accumulation of the synaptic conductivity matrix on GPU:
+
   $$\mathbf{M}_{\text{stsp}}(t) = 0.92 \cdot \mathbf{M}_{\text{stsp}}(t-1) + 0.08 \cdot \text{Contrast}_{\text{now}}(t)$$
+  
 * **Visual Synthesis:** A latent violet ghost Gabor pattern briefly flashes when a Gamma pulse pings the inactive state.
 
 ---
@@ -217,7 +233,9 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 ### 3.1 Multi-Device Spatial Consensus Pooling
 The system supports up to 4 concurrent FreeEEG16-alpha2 arrays over BLE5 / LabStreamingLayer (LSL).
 * When multiple devices are placed on the **same cortical region** (e.g., Device 0 and Device 1 both assigned to `Oz` over bilateral visual cortex), their 120-edge tensors are pooled via **ensemble averaging on CUDA**:
+
   $$\mathbf{W}_{\text{pooled}}(R) = \frac{1}{|D_R|}\sum_{d \in D_R} \mathbf{W}_d, \quad \text{where } D_R = \{d \mid \text{Routing}(d) = R\}$$
+  
 * This suppresses uncorrelated sensor noise and sharpens the population phase estimate.
 
 ### 3.2 Deterministic Regional Stubs
