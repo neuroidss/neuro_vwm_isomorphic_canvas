@@ -262,7 +262,7 @@ $$\text{Total Edges} = C_4^2 + C_{12}^2 + (4 \times 12) = 6 + 66 + 48 = 120$$
 ### 4.3 Causal Instantaneous Directed iPLV Formulation
 To eliminate instantaneous volume conduction ($\Delta \varphi = 0$) across the scalp without discarding phase directionality [19, 20]:
 
-$$\mathrm{iPLV}_{ij}(t) = \Im\left\{ \frac{\dot{x}_i(t)}{|\dot{x}_i(t)|} \cdot \left(\frac{\dot{x}_j(t)}{|\dot{x}_j(t)|}\right)^* \right\} = \sin\left(\varphi_i(t) - \varphi_j(t)\right) \in [-1.0, +1.0]$$
+$$\mathrm{iPLV}_{ij}(t) = \Im\left\lbrace \frac{\dot{x}_i(t)}{|\dot{x}_i(t)|} \cdot \left(\frac{\dot{x}_j(t)}{|\dot{x}_j(t)|}\right)^* \right\rbrace = \sin\left(\varphi_i(t) - \varphi_j(t)\right) \in [-1.0, +1.0]$$
 
 ### 4.4 Hardware Neuro-PLL (Phase-Locked Loop) & Jitter Elimination
 To bridge discrete BLE packet bursts ($20\text{--}40\text{ ms}$) into a continuous 500+ FPS visual stream without phase stutter, an on-GPU Phase-Locked Loop (PLL) tracks the biological Theta pacemaker:
