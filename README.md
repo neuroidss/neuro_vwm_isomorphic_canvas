@@ -165,14 +165,14 @@ Any muscle tension collapses the 120-edge matrix to zero, extinguishing visual c
 #### [F5] Curvature: Pasupathy-Connor Banana Gabor ($\kappa \in [-0.8, +0.8]$)
 * **Biological Origin:** Intermediate visual areas ($V_2 / V_4$) contain end-stopped neurons tuned to curved boundary contours and angular corners [9, 27].
 * **Decoding Formulation:** Extracted from the sagitta curvature $rx$ of the 120-edge graph:
-  $$\kappa(k) = \operatorname{clamp}\left(1.5 \cdot \sum_{p=1}^{120} \mathbf{W}_{k,p} \cdot \text{CURL}_p, \; -0.8, \; +0.8\right)$$
+  $$\kappa(k) = \text{clamp}\left(1.5 \cdot \sum_{p=1}^{120} \mathbf{W}_{k,p} \cdot \text{CURL}_p, -0.8, +0.8\right)$$
 * **Visual Synthesis:** Nonlinear parabolic coordinate bending in GLSL:
   $$y' = y + \kappa(k) \cdot x^2 \cdot 3.0$$
 
 #### [F6] Plaid: Bipartite Cross-Orientation Activation ($V_1 / MT$)
 * **Biological Origin:** Complex cells in $V_1$ and area $MT$ integrate cross-oriented inputs into a unified 2D plaid texture [21].
 * **Decoding Formulation:** Spectral standard deviation across the 120-edge matrix gates orthogonal grating power:
-  $$\text{Plaid}(k) = \operatorname{clamp}\left(1.2 \cdot \sigma_p(\mathbf{W}_{k,:}), \; 0.0, \; 1.0\right)$$
+  $$\text{Plaid}(k) = \text{clamp}\left(1.2 \cdot \sigma_p(\mathbf{W}_{k,:}), 0.0, 1.0\right)$$
 * **Visual Synthesis:** Bipartite superposition of orthogonal gratings forming a 2D checkerboard mesh.
 
 #### [F7] Dual-Item Theta Multiplexing (Phase-Partitioned Dual Memory)
